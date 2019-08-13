@@ -101,3 +101,24 @@ Python has keywords (31 of them in v2; 33 in v3), which are identifiers that Pyt
 31. `while` - To create a while loop
 32. `with` - Used to simplify exception handling
 33. `yield` - To end a function, returns a generator
+
+##### Operators
+
+```
++ - * / % ** // << >> & | ^ ~ < <= > >= < > != ==
+```
+
+##### Delimiters
+
+Python uses the following characters and combinations as delimiters in expressions, list, dictionary, and set literals, and various statements, among other purposes:
+
+```
+(  )   [  ]   {  }
+,  :  .  `   =  ;  @
++=  -=  *=  /= //=  %=
+&=  |=  ^=  >>=  <<=  **=
+```
+
+##### Statements
+
+You can look at a Python source file as a sequence of simple and compound statements. Unlike some other languages, Python has no “declarations” or other top-level syntax elements: just statements.
