@@ -53,3 +53,51 @@ or some other line starting with `#!` followed by a path to the python interpret
 `#!/usr/bin/python -O`
 
 ## Core Python Language and Built ins
+
+#### Tokens
+
+Python breaks each logical line into a sequence of elementary lexical components known as tokens. Each token corresponds to a substring of the logical line. The normal token types are identifiers, keywords, operators, delimiters, and literals, which we cover in the following sections. You may freely use whitespace between tokens to separate them. Some whitespace separation is necessary between logically adjacent identifiers or keywords; otherwise, Python would parse them as a single, longer identifier. For example, `ifx` is a single identifier; to write the keyword `if` followed by the identifier `x`, you need to insert some whitespace (e.g., `if x`).
+
+##### Identifiers
+
+An identifier is a name used to specify a variable, function, class, module, or other object. An identifier starts with a letter.
+
+Normal Python style is to start class names with an uppercase letter, and other identifiers with a lowercase letter. Starting an identifier with a single leading underscore indicates by convention that the identifier is meant to be private. Starting an identi‐ fier with two leading underscores indicates a strongly private identifier; if the identi‐ fier also ends with two trailing underscores, however, this means that the identifier is a language-defined special name.
+
+##### Keywords
+
+Python has keywords (31 of them in v2; 33 in v3), which are identifiers that Python reserves for special syntactic uses.
+
+1. `and` - A logical operator
+2. `as` - To create an alias
+3. `assert` - For debugging
+4. `break` - To break out of a loop
+5. `class` - To define a class
+6. `continue` - To continue to the next iteration of a loop
+7. `def` - To define a function
+8. `del` - To delete an object
+9. `elif` - Used in conditional statements, same as else if
+10. `else` - Used in conditional statements
+11. `except` - Used with exceptions, what to do when an exception occurs
+12. `False` - Boolean value, result of comparison operations
+13. `finally` - Used with exceptions, a block of code that will be executed no matter if there is an exception or not
+14. `for` - To create a for loop
+15. `from` - To import specific parts of a module
+16. `global` - To declare a global variable
+17. `if` - To make a conditional statement
+18. `import` - To import a module
+19. `in` - To check if a value is present in a list, tuple, etc.
+20. `is` - To test if two variables are equal
+21. `lambda` - To create an anonymous function
+22. `None` - Represents a null value
+23. `nonlocal` - To declare a non-local variable
+24. `not` - A logical operator
+25. `or` - A logical operator
+26. `pass` - A null statement, a statement that will do nothing
+27. `raise` - To raise an exception
+28. `return` - To exit a function and return a value
+29. `True` - Boolean value, result of comparison operations
+30. `try` - To make a try...except statement
+31. `while` - To create a while loop
+32. `with` - Used to simplify exception handling
+33. `yield` - To end a function, returns a generator
