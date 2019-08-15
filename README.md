@@ -34,7 +34,7 @@ Use `-i` when you want to get an interactive session immediately after running s
 
 When you run python without a script argument, Python starts an interactive ses‐ sion and prompts you to enter Python statements or expressions. Interactive ses‐ sions are useful to explore, to check things out, and to use Python as a powerful, extensible interactive calculator.
 
-When you enter a complete statement, Python executes it. When you enter a com‐ plete expression, Python evaluates it. If the expression has a result, Python outputs a string representing the result and also assigns the result to the variable named \_ (a single underscore) so that you can immediately use that result in another expres‐ sion. The prompt string is >>> when Python expects a statement or expression and ... when a statement or expression has been started but not completed. In par‐ ticular, Python prompts you with ... when you have opened a parenthesis on a pre‐ vious line and have not closed it yet.
+When you enter a complete statement, Python executes it. When you enter a com‐ plete expression, Python evaluates it. If the expression has a result, Python outputs a string representing the result and also assigns the result to the variable named `_` (a single underscore) so that you can immediately use that result in another expres‐ sion. The prompt string is >>> when Python expects a statement or expression and ... when a statement or expression has been started but not completed. In par‐ ticular, Python prompts you with ... when you have opened a parenthesis on a pre‐ vious line and have not closed it yet.
 
 #### Running Python Programs
 
@@ -122,3 +122,73 @@ Python uses the following characters and combinations as delimiters in expressio
 ##### Statements
 
 You can look at a Python source file as a sequence of simple and compound statements. Unlike some other languages, Python has no “declarations” or other top-level syntax elements: just statements.
+
+##### Data Types
+
+The operation of a Python program hinges on the data it handles. Data values in Python are known as objects; each object, AKA value, has a type. An object’s type determines which operations the object supports (in other words, which operations you can perform on the value). The type also determines the object’s attributes and items (if any) and whether the object can be altered. An object that can be altered is known as a mutable object, while one that cannot be altered is an immutable object.
+
+The built-in type(obj) accepts any object as its argument and returns the type object that is the type of obj. The built-in function `isinstance(obj, type)` returns `True` when object obj has type type (or any subclass thereof ); otherwise, it returns `False`.
+
+##### Numbers
+
+The built-in numeric types in Python include integers (int and long, in v2; in v3, there’s no distinction between kinds of integers), floating-point numbers, and complex numbers.
+`All numbers in Python are immutable objects; therefore, when you perform an operation on a number object, you produce a new number object`
+
+##### Integer Numbers
+
+Integer literals can be decimal, binary, octal, or hexadecimal. A `decimal literal` is a sequence of digits in which the `first digit is nonzero`. A `binary literal` is `0b followed by a sequence of binary digits (0 or 1)`. An `octal literal`, in v2 only, can be 0 followed by a sequence of `octal digits (0 to 7)`. This syntax can be quite misleading for the reader, and we do not recommend it; rather, use `0o followed by a sequence of octal digits`, which works in both v2 and v3 and does not risk misleading the reader. A `hexadecimal literal` is `0x followed by a sequence of hexadecimal digits (0 to 9 and A to F, in either upper- or lowercase)`. For example:
+
+```python
+1, 23, 3493             # Decimal integer literals
+0b010101, 0b110010      # Binary integer literals
+0o1, 0o27, 0o6645       # Octal integer literals
+0x1, 0x17, 0xDA5        # Hexadecimal integer literals
+```
+
+##### Floating-point numbers
+
+A floating-point literal is a sequence of decimal digits that includes a decimal point (.), an exponent suffix (an e or E, optionally followed by + or -, followed by one or more digits), or both. The leading character of a floating-point literal cannot be e or E; it may be any digit or a period (.). For example:
+
+```python
+0., 0.0, .0, 1., 1.0, 1e0, 1.e0, 1.0e0 # Floating-point literals
+```
+
+##### Complex numbers
+
+A complex number is made up of two floating-point values, one each for the real and imaginary parts. You can access the parts of a complex object `z` as read-only attributes `z.real` and `z.imag`. You can specify an imaginary literal as a floating- point or decimal literal followed by a j or J:
+
+```python
+0j, 0.j, 0.0j, .0j, 1j, 1.j, 1.0j, 1e0j, 1.e0j, 1.0e0j
+```
+
+The `j` at the end of the literal indicates the `square root of -1`, as commonly used in electrical engineering (some other disciplines use `i` for this purpose, but Python has chosen j. There are no other complex literals. To denote any constant complex number, add or subtract a floating-point (or integer) literal and an imaginary one. `For example, to denote the complex number that equals one, use expressions like 1+0j or 1.0+0.0j. Python performs the addition or subtraction at compile time.`
+
+##### Underscores in numeric literals
+
+To assist visual assessment of the magnitude of a number, from 3.6 onward numeric literals can include single underscore (\_) characters between digits or after any base specifier. As this implies, not only decimal numeric constants can benefit from this new notational freedom:
+
+```python
+# grouping decimal numbers by thousands
+amount = 10_000_000.0
+
+# grouping hexadecimal addresses by words
+addr = 0xCAFE_F00D
+
+# grouping bits into nibbles in a binary literal
+flags = 0b_0011_1111_0100_1110
+
+# same, for string conversions
+flags = int('0b_1111_0000', 2)
+```
+
+##### Sequences
+
+A sequence is an ordered container of items, indexed by integers. Python has built-in sequence types known as strings (bytes and Unicode), tuples, and lists. Library and extension modules provide other sequence types, and you can write yet others yourself
+
+##### Iterables
+
+A Python concept that generalizes the idea of “sequence” is that of iterables. `All sequences are iterable`: whenever we say you can use an iterable, you can in particular use a sequence (for example, a list).
+
+`Also, when we say that you can use an iterable, we mean, usually, a bounded iterable: an iterable that eventually stops yielding items. All sequences are bounded. Itera‐ bles, in general, can be unbounded, but if you try to use an unbounded iterable without special precautions, you could produce a program that never terminates, or one that exhausts all available memory.`
+
+##### Strings
