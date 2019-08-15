@@ -192,3 +192,110 @@ A Python concept that generalizes the idea of “sequence” is that of iterable
 `Also, when we say that you can use an iterable, we mean, usually, a bounded iterable: an iterable that eventually stops yielding items. All sequences are bounded. Itera‐ bles, in general, can be unbounded, but if you try to use an unbounded iterable without special precautions, you could produce a program that never terminates, or one that exhausts all available memory.`
 
 ##### Strings
+
+A built-in string object (bytes or Unicode) is a sequence of characters used to store and represent text-based information (byte strings, also known as byte objects, store and represent arbitrary sequences of binary bytes). Strings in Python are immutable: when you perform an operation on strings, you always produce a new string object, rather than mutating an existing string. String objects provide many methods.
+
+`A string literal can be quoted or triple-quoted. A quoted string is a sequence of 0+ characters within matching quotes, single (') or double ("). For example:`
+
+```python
+'This is a literal string'
+"This is another string"
+```
+
+`The two different kinds of quotes function identically; having both lets you include one kind of quote inside of a string specified with the other kind, with no need to escape quote characters with the backslash character (\):`
+
+```python
+'I\'m a Python fanatic' # a quote can be escaped
+"I'm a Python fanatic" # this way is more readable
+```
+
+`Other things equal, using single quotes to denote string literals is better Python style. To have a string literal span multiple physical lines, you can use a \ as the last character of a line to indicate that the next line is a continuation:`
+
+```python
+'A not very long string \
+that spans two lines' # comment not allowed on previous line
+```
+
+`To make the string contain two lines, you can embed a newline in the string:`
+
+```python
+'A not very long string\n\
+that prints on two lines' # comment not allowed on previous line
+```
+
+`A better approach is to use a triple-quoted string, enclosed by matching triplets of quote characters (''' or, more commonly, """):`
+
+```python
+"""An even bigger
+string that spans
+three lines"""           # comments not allowed on previous lines
+```
+
+`In a triple-quoted string literal, line breaks in the literal remain as newline charac‐ ters in the resulting string object. You can start a triple-quoted literal with a back‐ slash immediately followed by a newline, to avoid having the first line of the literal string’s content at a different indentation level from the rest. For example:`
+
+```python
+the_text = """\
+First line
+Second line
+""" # like 'First line\nSecond line\n' but more readable
+```
+
+The only character that cannot be part of a triple-quoted string is an unescaped backslash, while a quoted string cannot contain unescaped backslashes, nor line ends, nor the quote character that encloses it. The backslash character starts an escape sequence, which lets you introduce any character in either kind of string.
+
+Colons can be used to align columns.
+
+| Sequence   |                   Meaning                   |  ASCII/ISO code |
+| ---------- | :-----------------------------------------: | --------------: |
+| \<newline> |             Ignore end of line              |            None |
+| \\\        |                  Backslach                  |            0x5c |
+| \\'        |                Single Quote                 |            0x27 |
+| \\"        |                Double Quote                 |            0x22 |
+| \\a        |                    Bell                     |            0x07 |
+| \\b        |                  Backspace                  |            0x08 |
+| \\f        |                  Form Feed                  |            0x0c |
+| \\n        |                   Newline                   |            0x0a |
+| \\r        |               Carriage return               |            0x0d |
+| \\t        |                     Tab                     |            0x09 |
+| \\v        |                Vertical Tab                 |            0x0b |
+| \\DDD      |               Octal value DDD               |        As Given |
+| \\xXX      |             Hexadecimal valueXX             |        As Given |
+| \\other    | Any other character: a two-character string | 0x5c + as given |
+
+###### Raw String Literal
+
+A variant of a string literal is a raw string. The syntax is the same as for quoted or triple-quoted string literals, except that an r or R immediately precedes the leading quote. In raw strings, escape sequences are not interpreted as in Table 3-1, but are literally copied into the string, including backslashes and newline characters. Raw string syntax is handy for strings that include many backslashes, especially regular expression patterns. A raw string cannot end with an odd number of backslashes: the last one would be taken as escaping the terminating quote.
+
+###### Unicode String Literal
+
+In Unicode string literals you can use \u followed by four hex digits, and \U followed by eight hex digits, to denote Unicode characters, and can also include the same escape sequences listed in above table. Unicode literals can also include the escape sequence `\N{name}`, where name is a standard Unicode name, as listed at http://www.unicode.org/charts/. For example, `\N{Copyright Sign}` indicates a Uni‐ code copyright sign character (©).
+
+###### Formatted String Literal (New in 3.6)
+
+Formatted string literals let you inject formatted expressions into your strings, which are therefore no longer constants but subject to evaluation at execution time.
+
+```python
+>>> name = "Ameer"
+>>> age = 24
+>>> f"Hello, {name}. You are {age}."
+'Hello, Ameer. You are 24.'
+```
+
+You could also call functions.
+
+```python
+>>> def to_lowercase(input):
+...     return input.lower()
+
+>>> name = "ameer"
+>>> f"{to_lowercase(name)} is funny."
+'ameer is funny.'
+```
+
+Multiple string literals of any kind—quoted, triple-quoted, raw, bytes, formatted, Unicode can be adjacent, with optional whitespace in between (except that, in v3, you cannot mix bytes and Unicode in this way). The compiler concatenates such adjacent string literals into a single string object. In v2, if any literal in the concatenation is Unicode, the whole result is Unicode. Writing a long string literal in this way lets you present it readably across multiple physical lines and gives you an opportunity to insert comments about parts of the string. For example:
+
+```python
+marypop = ('supercalifragilistic' # Open paren->logical line continues
+            'expialidocious') # Indentation ignored in continuation
+```
+
+The string assigned to marypop is a single word of 34 characters.
