@@ -299,3 +299,35 @@ marypop = ('supercalifragilistic' # Open paren->logical line continues
 ```
 
 The string assigned to marypop is a single word of 34 characters.
+
+##### Tuples
+
+A tuple is an immutable ordered sequence of items. The items of a tuple are arbi‐ trary objects and may be of different types. You can use mutable objects (e.g., lists) as tuple items; however, best practice is to avoid tuples with mutable items.
+To denote a tuple, use a series of expressions (the items of the tuple) separated by commas (,); if every item is a literal, the whole assembly is a tuple literal. You may optionally place a redundant comma after the last item. You may group tuple items within parentheses, but the parentheses are necessary only where the commas would otherwise have another meaning (e.g., in function calls), or to denote empty or nested tuples. A tuple with exactly two items is also known as a pair. To create a tuple of one item, add a comma to the end of the expression. To denote an empty tuple, use an empty pair of parentheses. Here are some tuple literals, all in the optional parentheses (the parentheses are not optional in the last case):
+
+```python
+(100, 200, 300)     # Tuple with three items
+(3.14,)             # Tuple with 1 item needs trailing comma
+()                  # Empty tuple (parentheses NOT optional)
+```
+
+You can also call the built-in type `tuple` to create a tuple. For example:
+`tuple('wow')`
+This builds a tuple equal to that denoted by the tuple literal:
+`('w', 'o', 'w')`
+tuple() without arguments creates and returns an empty tuple, like (). When x is
+iterable, tuple(x) returns a tuple whose items are the same as those in x.
+
+##### Lists
+
+A list is a mutable ordered sequence of items. The items of a list are arbitrary objects and may be of different types.
+
+```python
+[42, 3.14, 'hello']         # List with three items
+[100]                       # List with one item
+[]                          # Empty list
+```
+
+You can also call the built-in type lis`t to create a list. For example`list('wow')`This builds a list equal to that denoted by the list literal:`['w', 'o', 'w']`
+
+##### Sets
