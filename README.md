@@ -6,6 +6,24 @@ Table of Contents
 
 - [1 Python Interpreter](#python-interpreter)
 - [2 Core Python Language and Build-ins](#core-python-language-and-built-ins)
+  - [2.1 Lexical Structure](#lexical-structure)
+    - [2.1.1 Tokens](#tokens)
+    - [2.1.2 Identifiers](#identifiers)
+    - [2.1.3 Keywords](#keywords)
+    - [2.1.4 Operators](#operators)
+    - [2.1.5 Delimiters](#delimiters)
+    - [2.1.6 Statements](#statements)
+  - [2.2 Data Types](#data-types)
+    - [2.2.1 Numbers](#numbers)
+    - [2.2.2 Integer Numbers](#integer-numbers)
+    - [2.2.3 Floating point numbers](#floating-point-numbers)
+    - [2.2.4 Complex Numbers](#complex-numbers)
+    - [2.2.5 Underscores in Numeric Literals](#underscores-in-numeric-literals)
+    - [2.2.6 Sequences](#sequences)
+    - [2.2.7 Iterables](#iterables)
+    - [2.2.8 Strings](#strings)
+    - [2.2.9 Tuples](#tuples)
+    - [2.2.10 Sets](#sets)
 
 ## Python Interpreter
 
@@ -54,7 +72,9 @@ or some other line starting with `#!` followed by a path to the python interpret
 
 ## Core Python Language and Built ins
 
-#### Tokens
+#### Lexical Structure
+
+##### Tokens
 
 Python breaks each logical line into a sequence of elementary lexical components known as tokens. Each token corresponds to a substring of the logical line. The normal token types are identifiers, keywords, operators, delimiters, and literals, which we cover in the following sections. You may freely use whitespace between tokens to separate them. Some whitespace separation is necessary between logically adjacent identifiers or keywords; otherwise, Python would parse them as a single, longer identifier. For example, `ifx` is a single identifier; to write the keyword `if` followed by the identifier `x`, you need to insert some whitespace (e.g., `if x`).
 
@@ -123,7 +143,7 @@ Python uses the following characters and combinations as delimiters in expressio
 
 You can look at a Python source file as a sequence of simple and compound statements. Unlike some other languages, Python has no “declarations” or other top-level syntax elements: just statements.
 
-##### Data Types
+#### Data Types
 
 The operation of a Python program hinges on the data it handles. Data values in Python are known as objects; each object, AKA value, has a type. An object’s type determines which operations the object supports (in other words, which operations you can perform on the value). The type also determines the object’s attributes and items (if any) and whether the object can be altered. An object that can be altered is known as a mutable object, while one that cannot be altered is an immutable object.
 
@@ -145,7 +165,7 @@ Integer literals can be decimal, binary, octal, or hexadecimal. A `decimal liter
 0x1, 0x17, 0xDA5        # Hexadecimal integer literals
 ```
 
-##### Floating-point numbers
+##### Floating Point numbers
 
 A floating-point literal is a sequence of decimal digits that includes a decimal point (.), an exponent suffix (an e or E, optionally followed by + or -, followed by one or more digits), or both. The leading character of a floating-point literal cannot be e or E; it may be any digit or a period (.). For example:
 
