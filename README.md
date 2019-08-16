@@ -28,8 +28,14 @@ Table of Contents
     - [2.2.12 None](#none)
     - [2.2.12 Callables](#callables)
     - [2.2.13 Boolean Values](#boolean-values)
-  - [2.2 Variables and Other References](#variables-and-other-references)
-    - [2.2.1 Variables](#variables)
+  - [2.3 Variables and Other References](#variables-and-other-references)
+    - [2.3.1 Variables](#variables)
+      - [2.3.1.1 Object Attributes and Items](#object-attributes-and-items)
+      - [2.3.1.2 Accessing nonexistent references](#accessing-nonexistent-references)
+    - [2.3.2 Assignment Statements](#assignment-statements)
+      - [2.3.2.1 Plain Assignment](#plain-assignment)
+      - [2.3.2.2 Augmented Assignment](#augmented-assignment)
+      - [2.3.2.3 Del Statements](#del-statements)
 
 ## Python Interpreter
 
@@ -428,3 +434,92 @@ def count_trues(seq): return sum(bool(x) for x in seq)
 In this example, the bool call ensures each item of seq is counted as 0 (if false) or 1
 (if true), so count_trues is more general than sum(seq) would be.
 `When we write “expression is true,” we mean that bool(expression) would return True.`
+
+#### Variables and Other References
+
+A Python program accesses data values through references. A reference is a “name” that refers to a value (object). References take the form of variables, attributes, and items. In Python, a variable or other reference has no intrinsic type. The object to which a reference is bound at a given time always has a type, but a given reference may be bound to objects of various types in the course of the program’s execution.
+
+##### Variables
+
+In Python, there are no “declarations.” The existence of a variable begins with a statement that binds the variable (in other words, sets a name to hold a reference to some object). You can also unbind a variable, resetting the name so it no longer holds a reference. Assignment statements are the most common way to bind vari‐ ables and other references. The del statement unbinds references.`The cleanup of objects with no references is known as garbage collection.` A variable can be global or local. A global variable is an attribute of a module object. A local variable lives in a function’s local namespace
+
+###### Object attributes and items
+
+To denote an attribute of an object, use a reference to the object, followed by a period (.), followed by an identifier known as the attribute name. For example, x.y refers to one of the attributes of the object bound to name x, specifically that attribute whose name is 'y'.
+
+To denote an item of an object, use a reference to the object, followed by an expres‐ sion within brackets ([]). The expression in brackets is known as the item’s index or key, and the object is known as the item’s container. For example, x[y] refers to the item at the key or index bound to name y, within the container object bound to name x.
+
+Attributes that are callable are also known as methods. Python draws no strong dis‐ tinctions between callable and noncallable attributes, as some other languages do. All rules about attributes also apply to callable attributes (methods).
+
+###### Accessing nonexistent references
+
+A common programming error is trying to access a reference that does not exist. For example, a variable may be unbound, or an attribute name or item index may not be valid for the object to which you apply it. The Python compiler, when it ana‐ lyzes and compiles source code, diagnoses only syntax errors. Compilation does not diagnose semantic errors, such as trying to access an unbound attribute, item, or variable. Python diagnoses semantic errors only when the errant code executes— that is, at runtime. When an operation is a Python semantic error, attempting it raises an exception. Accessing a nonexistent variable, attribute, or item—just like any other semantic error—raises an exception.
+
+##### Assignment Statements
+
+Assignment statements can be plain or augmented.
+
+###### Plain assignment
+
+A plain assignment statement in the simplest form has the syntax:
+
+    `target = expression`
+
+`The target is known as the lefthand side (LHS)`, and `the expression is the righthand side (RHS)`. When the assignment executes, Python evaluates the RHS expression, then binds the expression’s value to the LHS target. Python draws no strong distinction between call‐ able and noncallable objects. **This is part of functions and the like being first-class objects.**
+
+Details of the binding do depend on the kind of target. The target in an assignment may be an identifier, an attribute reference, an indexing, or a slicing:
+
+- `An identifier`
+  Is a variable name. Assigning to an identifier binds the variable with this name.
+- `An attribute reference`
+  Has the syntax `obj.name`. Assigning to an attribute reference asks object obj to bind its attribute named `name`.
+- `An indexing`
+  Has the syntax `obj[expr]`. Assigning to an indexing asks container obj to bind its item indicated by the value of expr, also known as the index or key of the item in the container.
+- `A slicing`
+  Has the syntax `obj[start:stop]` or `obj[start:stop:stride]`. Assigning to a slicing asks con‐ tainer obj to bind or unbind some of its items. Assigning to a slicing such as `obj[start:stop:stride]` is equivalent to assigning to the indexing `obj[slice(start, stop, stride)]`.
+
+A plain assignment can use multiple targets and equals signs (=). For example:
+
+      `a = b = c = 0`
+
+The target in a plain assignment can list two or more references separated by commas, optionally enclosed in parentheses or brackets. For example:
+
+      `a , b , c = x`
+
+**This statement requires x to be an iterable with exactly three items, and binds a to the first item, b to the second, and c to the third. This kind of assignment is known as an unpacking assignment.**
+
+An unpacking assignment can also be used to swap references:
+
+      `a , b = b , a`
+
+`In v3, exactly one of the multiple targets of an unpacking assignment may be preceded by *. That starred target is bound to a list of all items, if any, that were not assigned to other targets.`
+
+```python
+first, *middle, last = x      # x is a list,
+```
+
+Assignment requires x to have at least two items.
+
+###### Augmented assignment
+
+An augmented assignment (sometimes also known as an in-place assignment) differs from a plain assignment in that, instead of an equals sign (=) between the target and the expression, it uses an augmented operator, which is a binary operator followed by =. The augmented operators are
+
+```python
++=, -=, \*=, /=, //=, %=, \*\*=, |=, >>=, <<=, &=, and ^= (and, in v3 only, @=).
+```
+
+An augmented assignment can have only one target on the LHS; augmented assignment doesn’t support multiple targets.
+
+In an augmented assignment, just as in a plain one, Python first evaluates the RHS expression. Then, when the LHS refers to an object that has a special method for the appropriate in-place version of the operator, Python calls the method with the RHS value as its argument. It is up to the method to modify the LHS object appropriately and return the modified object (“Special Methods” on page 123 covers special meth‐ ods). When the LHS object has no appropriate in-place special method, Python applies the corresponding binary operator to the LHS and RHS objects, then rebinds the target reference to the operator’s result. For example, x+=y is like x=x.**\_\_iadd\_\_**(y) when x has special method **\_\_iadd\_\_** for in-place addition. Otherwise, x+=y is like x=x+y.
+
+Augmented assignment never creates its target reference; the target must already be bound when augmented assignment executes. Augmented assignment can rebind the target reference to a new object, or modify the same object to which the target reference was already bound. Plain assignment, in contrast, can create or rebind the LHS target reference, but it never modifies the object, if any, to which the target ref‐ erence was previously bound. The distinction between objects and references to objects is crucial here. For example,
+
+`x=x+y does not modify the object to which name x was originally bound. Rather, it rebinds the name x to refer to a new object. x+=y, in contrast, modifies the object to which the name x is bound, when that object has special method __iadd__; otherwise, x+=y rebinds the name x to a new object, just like x=x+y.`
+
+###### Del Statements
+
+Despite its name, a del statement unbinds references—it does not, per se, delete objects. Object deletion may automatically follow as a consequence, by garbage col‐ lection, when no more references to an object exist.
+
+A del statement consists of the keyword del, followed by one or more target refer‐ ences separated by commas (,). Each target can be a variable, attribute reference, indexing, or slicing, just like for assignment statements, and must be bound at the time del executes. When a del target is an identifier, the del statement means to unbind the variable. If the identifier was bound, unbinding it is never disallowed; when requested, it takes place.
+
+Containers are also allowed to have del cause side effects. For example, assuming del C[2] succeeds, when C is a dict, this makes future references to C[2] invalid (raising KeyError) until and unless you assign to C[2] again; but when C is a list, del C[2] implies that every following item of C “shifts left by one”—so, if C is long enough, future references to C[2] are still valid, but denote a distinct item than they did before the del.
