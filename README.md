@@ -24,6 +24,9 @@ Table of Contents
     - [2.2.8 Strings](#strings)
     - [2.2.9 Tuples](#tuples)
     - [2.2.10 Sets](#sets)
+    - [2.2.11 Dictionaries](#dictionaries)
+    - [2.2.12 None](#none)
+    - [2.2.12 Callables](#callables)
 
 ## Python Interpreter
 
@@ -351,3 +354,50 @@ A list is a mutable ordered sequence of items. The items of a list are arbitrary
 You can also call the built-in type lis`t to create a list. For example`list('wow')`This builds a list equal to that denoted by the list literal:`['w', 'o', 'w']`
 
 ##### Sets
+
+Python has two built-in set types, `set` and `frozenset`, to represent arbitrarily ordered collections of unique items. Items in a set may be of different types, but they must be hashable. `Instances of type set are mutable, and thus, not hashable;` `instances of type frozenset are immutable and hashable`. You can’t have a set whose items are sets, but you can have a set (or frozenset) whose items are frozensets. Sets and frozensets are not ordered.
+
+To create a set, you can call the `built-in type set` with no argument (this means an empty set) or one argument that is iterable (this means a set whose items are those of the iterable). You can similarly build a frozenset by calling frozenset.
+
+```python
+{42, 3.14, 'hello'}           # Literal for a set with three items
+{100}                         # Literal for a set with one item
+set()                         # Empty set (can't use {}—empty dict!)
+```
+
+##### Dictionaries
+
+A mapping is an arbitrary collection of objects indexed by nearly arbitrary values called keys. Mappings are mutable and, like sets but unlike sequences, are not (necessarily) ordered.
+
+Python provides a single built-in mapping type: the dictionary type. Library and extension modules provide other mapping types, and you can write others yourself.
+`Keys in a dictionary may be of different types, but they must be hashable`. `Values in a dictionary are arbitrary objects and may be of any type`. An item in a dictionary is a key/value pair.
+
+To denote a dictionary, you can use a series of colon-separated pairs of expressions (the pairs are the items of the dictionary) separated by commas (,) within braces ({});
+`dictionaries do not allow duplicate keys.`
+
+```python
+{'x':42, 'y':3.14, 'z':7}      # Dictionary with three items, str keys
+{1:2, 3:4}                     # Dictionary with two items, int keys
+{1:'za', 'br':23}              # Dictionary with mixed key types
+{}                             # Empty dictionary
+```
+
+You can also call the built-in type dict to create a dictionary in a way that, while usually less concise, can sometimes be more readable.
+
+```python
+dict(x=42, y=3.14, z=7)            # Dictionary with three items, str keys
+dict([(1, 2), (3, 4)])             # Dictionary with two items, int keys
+dict([(1,'za'), ('br',23)])        # Dictionary with mixed key types
+dict()                             # Empty dictionary
+```
+
+You can also create a dictionary by callingdict.fromkeys. The first argument is an iterable whose items become the keys of the dictionary; the second argument is the value that corresponds to each and every key (all keys initially map to the same value). If you omit the second argument, it defaults to None. For example:
+
+```python
+dict.fromkeys('hello', 2)       # same as {'h':2, 'e':2, 'l':2, 'o':2}
+dict.fromkeys([1, 2, 3])        # same as {1:None, 2:None, 3:None}
+```
+
+##### None
+
+The built-in None denotes a null object. None has no methods or other attributes. You can use None as a placeholder when you need a reference but you don’t care what object you refer to, or when you need to indicate that no object is there. Functions return None as their result unless they have specific return statements coded to return other values.
