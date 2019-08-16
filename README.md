@@ -27,6 +27,9 @@ Table of Contents
     - [2.2.11 Dictionaries](#dictionaries)
     - [2.2.12 None](#none)
     - [2.2.12 Callables](#callables)
+    - [2.2.13 Boolean Values](#boolean-values)
+  - [2.2 Variables and Other References](#variables-and-other-references)
+    - [2.2.1 Variables](#variables)
 
 ## Python Interpreter
 
@@ -401,3 +404,27 @@ dict.fromkeys([1, 2, 3])        # same as {1:None, 2:None, 3:None}
 ##### None
 
 The built-in None denotes a null object. None has no methods or other attributes. You can use None as a placeholder when you need a reference but you don’t care what object you refer to, or when you need to indicate that no object is there. Functions return None as their result unless they have specific return statements coded to return other values.
+
+##### Callables
+
+In Python, callable types are those whose instances support the function call operation.
+Functions are callable. Python provides several built-in functions and supports userdefined functions. Generators are also callable.
+`Types are also callable, as we already saw for the dict, list, set, and tuple built-in types.`
+Class objects (user-defined types) are also callable. Calling a type normally creates and returns a new instance of that type.
+Other callables are methods, which are functions bound to class attributes, and instances of classes that supply a special method named \_\_call\_\_.
+
+##### Boolean Values
+
+`Any data value in Python can be used as a truth value: true or false`. Any nonzero number or nonempty container (e.g., string, tuple, list, set, or dictionary) is true. 0 (of any numeric type), None, and empty containers are false.
+The built-in type bool is a subclass of int. **The only two values of type bool are True and False, which have string representations of 'True' and 'False', but also numerical values of 1 and 0**, respectively. Several built-in functions return bool results, as do comparison operators.
+You can call bool(x) with any x as the argument. The result is True when x is true and False when x is false. Good Python style is not to use such calls when they are redundant, as they most often are:
+**always write`if x`:, never any of `if bool(x)`:, `if x is True`, `if x==True`:, `if bool(x)==True`.**
+However, you can use bool(x) to count the number of true items in a sequence. For example:
+
+```python
+def count_trues(seq): return sum(bool(x) for x in seq)
+```
+
+In this example, the bool call ensures each item of seq is counted as 0 (if false) or 1
+(if true), so count_trues is more general than sum(seq) would be.
+`When we write “expression is true,” we mean that bool(expression) would return True.`
