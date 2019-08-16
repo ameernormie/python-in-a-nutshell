@@ -36,6 +36,7 @@ Table of Contents
       - [2.3.2.1 Plain Assignment](#plain-assignment)
       - [2.3.2.2 Augmented Assignment](#augmented-assignment)
       - [2.3.2.3 Del Statements](#del-statements)
+    - [2.3.3 Expressions and Operators](#expressions-and-operators)
 
 ## Python Interpreter
 
@@ -523,3 +524,5 @@ Despite its name, a del statement unbinds references—it does not, per se, dele
 A del statement consists of the keyword del, followed by one or more target refer‐ ences separated by commas (,). Each target can be a variable, attribute reference, indexing, or slicing, just like for assignment statements, and must be bound at the time del executes. When a del target is an identifier, the del statement means to unbind the variable. If the identifier was bound, unbinding it is never disallowed; when requested, it takes place.
 
 Containers are also allowed to have del cause side effects. For example, assuming del C[2] succeeds, when C is a dict, this makes future references to C[2] invalid (raising KeyError) until and unless you assign to C[2] again; but when C is a list, del C[2] implies that every following item of C “shifts left by one”—so, if C is long enough, future references to C[2] are still valid, but denote a distinct item than they did before the del.
+
+##### Expressions and Operators
