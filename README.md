@@ -85,19 +85,19 @@ or some other line starting with `#!` followed by a path to the python interpret
 
 ## Core Python Language and Built ins
 
-#### Lexical Structure
+### Lexical Structure
 
-##### Tokens
+#### Tokens
 
 Python breaks each logical line into a sequence of elementary lexical components known as tokens. Each token corresponds to a substring of the logical line. The normal token types are identifiers, keywords, operators, delimiters, and literals, which we cover in the following sections. You may freely use whitespace between tokens to separate them. Some whitespace separation is necessary between logically adjacent identifiers or keywords; otherwise, Python would parse them as a single, longer identifier. For example, `ifx` is a single identifier; to write the keyword `if` followed by the identifier `x`, you need to insert some whitespace (e.g., `if x`).
 
-##### Identifiers
+#### Identifiers
 
 An identifier is a name used to specify a variable, function, class, module, or other object. An identifier starts with a letter.
 
 Normal Python style is to start class names with an uppercase letter, and other identifiers with a lowercase letter. Starting an identifier with a single leading underscore indicates by convention that the identifier is meant to be private. Starting an identi‐ fier with two leading underscores indicates a strongly private identifier; if the identi‐ fier also ends with two trailing underscores, however, this means that the identifier is a language-defined special name.
 
-##### Keywords
+#### Keywords
 
 Python has keywords (31 of them in v2; 33 in v3), which are identifiers that Python reserves for special syntactic uses.
 
@@ -135,13 +135,13 @@ Python has keywords (31 of them in v2; 33 in v3), which are identifiers that Pyt
 32. `with` - Used to simplify exception handling
 33. `yield` - To end a function, returns a generator
 
-##### Operators
+#### Operators
 
 ```
 + - * / % ** // << >> & | ^ ~ < <= > >= < > != ==
 ```
 
-##### Delimiters
+#### Delimiters
 
 Python uses the following characters and combinations as delimiters in expressions, list, dictionary, and set literals, and various statements, among other purposes:
 
@@ -152,22 +152,22 @@ Python uses the following characters and combinations as delimiters in expressio
 &=  |=  ^=  >>=  <<=  **=
 ```
 
-##### Statements
+#### Statements
 
 You can look at a Python source file as a sequence of simple and compound statements. Unlike some other languages, Python has no “declarations” or other top-level syntax elements: just statements.
 
-#### Data Types
+### Data Types
 
 The operation of a Python program hinges on the data it handles. Data values in Python are known as objects; each object, AKA value, has a type. An object’s type determines which operations the object supports (in other words, which operations you can perform on the value). The type also determines the object’s attributes and items (if any) and whether the object can be altered. An object that can be altered is known as a mutable object, while one that cannot be altered is an immutable object.
 
 The built-in type(obj) accepts any object as its argument and returns the type object that is the type of obj. The built-in function `isinstance(obj, type)` returns `True` when object obj has type type (or any subclass thereof ); otherwise, it returns `False`.
 
-##### Numbers
+#### Numbers
 
 The built-in numeric types in Python include integers (int and long, in v2; in v3, there’s no distinction between kinds of integers), floating-point numbers, and complex numbers.
 `All numbers in Python are immutable objects; therefore, when you perform an operation on a number object, you produce a new number object`
 
-##### Integer Numbers
+#### Integer Numbers
 
 Integer literals can be decimal, binary, octal, or hexadecimal. A `decimal literal` is a sequence of digits in which the `first digit is nonzero`. A `binary literal` is `0b followed by a sequence of binary digits (0 or 1)`. An `octal literal`, in v2 only, can be 0 followed by a sequence of `octal digits (0 to 7)`. This syntax can be quite misleading for the reader, and we do not recommend it; rather, use `0o followed by a sequence of octal digits`, which works in both v2 and v3 and does not risk misleading the reader. A `hexadecimal literal` is `0x followed by a sequence of hexadecimal digits (0 to 9 and A to F, in either upper- or lowercase)`. For example:
 
@@ -178,7 +178,7 @@ Integer literals can be decimal, binary, octal, or hexadecimal. A `decimal liter
 0x1, 0x17, 0xDA5        # Hexadecimal integer literals
 ```
 
-##### Floating Point numbers
+#### Floating Point numbers
 
 A floating-point literal is a sequence of decimal digits that includes a decimal point (.), an exponent suffix (an e or E, optionally followed by + or -, followed by one or more digits), or both. The leading character of a floating-point literal cannot be e or E; it may be any digit or a period (.). For example:
 
@@ -186,7 +186,7 @@ A floating-point literal is a sequence of decimal digits that includes a decimal
 0., 0.0, .0, 1., 1.0, 1e0, 1.e0, 1.0e0 # Floating-point literals
 ```
 
-##### Complex numbers
+#### Complex numbers
 
 A complex number is made up of two floating-point values, one each for the real and imaginary parts. You can access the parts of a complex object `z` as read-only attributes `z.real` and `z.imag`. You can specify an imaginary literal as a floating- point or decimal literal followed by a j or J:
 
@@ -196,7 +196,7 @@ A complex number is made up of two floating-point values, one each for the real 
 
 The `j` at the end of the literal indicates the `square root of -1`, as commonly used in electrical engineering (some other disciplines use `i` for this purpose, but Python has chosen j. There are no other complex literals. To denote any constant complex number, add or subtract a floating-point (or integer) literal and an imaginary one. `For example, to denote the complex number that equals one, use expressions like 1+0j or 1.0+0.0j. Python performs the addition or subtraction at compile time.`
 
-##### Underscores in numeric literals
+#### Underscores in numeric literals
 
 To assist visual assessment of the magnitude of a number, from 3.6 onward numeric literals can include single underscore (\_) characters between digits or after any base specifier. As this implies, not only decimal numeric constants can benefit from this new notational freedom:
 
@@ -214,17 +214,17 @@ flags = 0b_0011_1111_0100_1110
 flags = int('0b_1111_0000', 2)
 ```
 
-##### Sequences
+#### Sequences
 
 A sequence is an ordered container of items, indexed by integers. Python has built-in sequence types known as strings (bytes and Unicode), tuples, and lists. Library and extension modules provide other sequence types, and you can write yet others yourself
 
-##### Iterables
+#### Iterables
 
 A Python concept that generalizes the idea of “sequence” is that of iterables. `All sequences are iterable`: whenever we say you can use an iterable, you can in particular use a sequence (for example, a list).
 
 `Also, when we say that you can use an iterable, we mean, usually, a bounded iterable: an iterable that eventually stops yielding items. All sequences are bounded. Itera‐ bles, in general, can be unbounded, but if you try to use an unbounded iterable without special precautions, you could produce a program that never terminates, or one that exhausts all available memory.`
 
-##### Strings
+#### Strings
 
 A built-in string object (bytes or Unicode) is a sequence of characters used to store and represent text-based information (byte strings, also known as byte objects, store and represent arbitrary sequences of binary bytes). Strings in Python are immutable: when you perform an operation on strings, you always produce a new string object, rather than mutating an existing string. String objects provide many methods.
 
@@ -294,15 +294,15 @@ Colons can be used to align columns.
 | \\xXX      |             Hexadecimal valueXX             |        As Given |
 | \\other    | Any other character: a two-character string | 0x5c + as given |
 
-###### Raw String Literal
+##### Raw String Literal
 
 A variant of a string literal is a raw string. The syntax is the same as for quoted or triple-quoted string literals, except that an r or R immediately precedes the leading quote. In raw strings, escape sequences are not interpreted as in Table 3-1, but are literally copied into the string, including backslashes and newline characters. Raw string syntax is handy for strings that include many backslashes, especially regular expression patterns. A raw string cannot end with an odd number of backslashes: the last one would be taken as escaping the terminating quote.
 
-###### Unicode String Literal
+##### Unicode String Literal
 
 In Unicode string literals you can use \u followed by four hex digits, and \U followed by eight hex digits, to denote Unicode characters, and can also include the same escape sequences listed in above table. Unicode literals can also include the escape sequence `\N{name}`, where name is a standard Unicode name, as listed at http://www.unicode.org/charts/. For example, `\N{Copyright Sign}` indicates a Uni‐ code copyright sign character (©).
 
-###### Formatted String Literal (New in 3.6)
+##### Formatted String Literal (New in 3.6)
 
 Formatted string literals let you inject formatted expressions into your strings, which are therefore no longer constants but subject to evaluation at execution time.
 
@@ -333,7 +333,7 @@ marypop = ('supercalifragilistic' # Open paren->logical line continues
 
 The string assigned to marypop is a single word of 34 characters.
 
-##### Tuples
+#### Tuples
 
 A tuple is an immutable ordered sequence of items. The items of a tuple are arbi‐ trary objects and may be of different types. You can use mutable objects (e.g., lists) as tuple items; however, best practice is to avoid tuples with mutable items.
 To denote a tuple, use a series of expressions (the items of the tuple) separated by commas (,); if every item is a literal, the whole assembly is a tuple literal. You may optionally place a redundant comma after the last item. You may group tuple items within parentheses, but the parentheses are necessary only where the commas would otherwise have another meaning (e.g., in function calls), or to denote empty or nested tuples. A tuple with exactly two items is also known as a pair. To create a tuple of one item, add a comma to the end of the expression. To denote an empty tuple, use an empty pair of parentheses. Here are some tuple literals, all in the optional parentheses (the parentheses are not optional in the last case):
@@ -351,7 +351,7 @@ This builds a tuple equal to that denoted by the tuple literal:
 tuple() without arguments creates and returns an empty tuple, like (). When x is
 iterable, tuple(x) returns a tuple whose items are the same as those in x.
 
-##### Lists
+#### Lists
 
 A list is a mutable ordered sequence of items. The items of a list are arbitrary objects and may be of different types.
 
@@ -363,7 +363,7 @@ A list is a mutable ordered sequence of items. The items of a list are arbitrary
 
 You can also call the built-in type lis`t to create a list. For example`list('wow')`This builds a list equal to that denoted by the list literal:`['w', 'o', 'w']`
 
-##### Sets
+#### Sets
 
 Python has two built-in set types, `set` and `frozenset`, to represent arbitrarily ordered collections of unique items. Items in a set may be of different types, but they must be hashable. `Instances of type set are mutable, and thus, not hashable;` `instances of type frozenset are immutable and hashable`. You can’t have a set whose items are sets, but you can have a set (or frozenset) whose items are frozensets. Sets and frozensets are not ordered.
 
@@ -375,7 +375,7 @@ To create a set, you can call the `built-in type set` with no argument (this mea
 set()                         # Empty set (can't use {}—empty dict!)
 ```
 
-##### Dictionaries
+#### Dictionaries
 
 A mapping is an arbitrary collection of objects indexed by nearly arbitrary values called keys. Mappings are mutable and, like sets but unlike sequences, are not (necessarily) ordered.
 
@@ -408,11 +408,11 @@ dict.fromkeys('hello', 2)       # same as {'h':2, 'e':2, 'l':2, 'o':2}
 dict.fromkeys([1, 2, 3])        # same as {1:None, 2:None, 3:None}
 ```
 
-##### None
+#### None
 
 The built-in None denotes a null object. None has no methods or other attributes. You can use None as a placeholder when you need a reference but you don’t care what object you refer to, or when you need to indicate that no object is there. Functions return None as their result unless they have specific return statements coded to return other values.
 
-##### Callables
+#### Callables
 
 In Python, callable types are those whose instances support the function call operation.
 Functions are callable. Python provides several built-in functions and supports userdefined functions. Generators are also callable.
@@ -420,7 +420,7 @@ Functions are callable. Python provides several built-in functions and supports 
 Class objects (user-defined types) are also callable. Calling a type normally creates and returns a new instance of that type.
 Other callables are methods, which are functions bound to class attributes, and instances of classes that supply a special method named \_\_call\_\_.
 
-##### Boolean Values
+#### Boolean Values
 
 `Any data value in Python can be used as a truth value: true or false`. Any nonzero number or nonempty container (e.g., string, tuple, list, set, or dictionary) is true. 0 (of any numeric type), None, and empty containers are false.
 The built-in type bool is a subclass of int. **The only two values of type bool are True and False, which have string representations of 'True' and 'False', but also numerical values of 1 and 0**, respectively. Several built-in functions return bool results, as do comparison operators.
@@ -436,15 +436,15 @@ In this example, the bool call ensures each item of seq is counted as 0 (if fals
 (if true), so count_trues is more general than sum(seq) would be.
 `When we write “expression is true,” we mean that bool(expression) would return True.`
 
-#### Variables and Other References
+### Variables and Other References
 
 A Python program accesses data values through references. A reference is a “name” that refers to a value (object). References take the form of variables, attributes, and items. In Python, a variable or other reference has no intrinsic type. The object to which a reference is bound at a given time always has a type, but a given reference may be bound to objects of various types in the course of the program’s execution.
 
-##### Variables
+#### Variables
 
 In Python, there are no “declarations.” The existence of a variable begins with a statement that binds the variable (in other words, sets a name to hold a reference to some object). You can also unbind a variable, resetting the name so it no longer holds a reference. Assignment statements are the most common way to bind vari‐ ables and other references. The del statement unbinds references.`The cleanup of objects with no references is known as garbage collection.` A variable can be global or local. A global variable is an attribute of a module object. A local variable lives in a function’s local namespace
 
-###### Object attributes and items
+##### Object attributes and items
 
 To denote an attribute of an object, use a reference to the object, followed by a period (.), followed by an identifier known as the attribute name. For example, x.y refers to one of the attributes of the object bound to name x, specifically that attribute whose name is 'y'.
 
@@ -452,15 +452,15 @@ To denote an item of an object, use a reference to the object, followed by an ex
 
 Attributes that are callable are also known as methods. Python draws no strong dis‐ tinctions between callable and noncallable attributes, as some other languages do. All rules about attributes also apply to callable attributes (methods).
 
-###### Accessing nonexistent references
+##### Accessing nonexistent references
 
 A common programming error is trying to access a reference that does not exist. For example, a variable may be unbound, or an attribute name or item index may not be valid for the object to which you apply it. The Python compiler, when it ana‐ lyzes and compiles source code, diagnoses only syntax errors. Compilation does not diagnose semantic errors, such as trying to access an unbound attribute, item, or variable. Python diagnoses semantic errors only when the errant code executes— that is, at runtime. When an operation is a Python semantic error, attempting it raises an exception. Accessing a nonexistent variable, attribute, or item—just like any other semantic error—raises an exception.
 
-##### Assignment Statements
+#### Assignment Statements
 
 Assignment statements can be plain or augmented.
 
-###### Plain assignment
+##### Plain assignment
 
 A plain assignment statement in the simplest form has the syntax:
 
@@ -501,7 +501,7 @@ first, *middle, last = x      # x is a list,
 
 Assignment requires x to have at least two items.
 
-###### Augmented assignment
+##### Augmented assignment
 
 An augmented assignment (sometimes also known as an in-place assignment) differs from a plain assignment in that, instead of an equals sign (=) between the target and the expression, it uses an augmented operator, which is a binary operator followed by =. The augmented operators are
 
@@ -517,7 +517,7 @@ Augmented assignment never creates its target reference; the target must already
 
 `x=x+y does not modify the object to which name x was originally bound. Rather, it rebinds the name x to refer to a new object. x+=y, in contrast, modifies the object to which the name x is bound, when that object has special method __iadd__; otherwise, x+=y rebinds the name x to a new object, just like x=x+y.`
 
-###### Del Statements
+##### Del Statements
 
 Despite its name, a del statement unbinds references—it does not, per se, delete objects. Object deletion may automatically follow as a consequence, by garbage col‐ lection, when no more references to an object exist.
 
@@ -525,4 +525,4 @@ A del statement consists of the keyword del, followed by one or more target refe
 
 Containers are also allowed to have del cause side effects. For example, assuming del C[2] succeeds, when C is a dict, this makes future references to C[2] invalid (raising KeyError) until and unless you assign to C[2] again; but when C is a list, del C[2] implies that every following item of C “shifts left by one”—so, if C is long enough, future references to C[2] are still valid, but denote a distinct item than they did before the del.
 
-##### Expressions and Operators
+#### Expressions and Operators
