@@ -2,7 +2,7 @@
 
 ---
 
-Table of Contents
+#### Table of Contents
 
 - [1 Python Interpreter](#python-interpreter)
 - [2 Core Python Language and Build-ins](#core-python-language-and-built-ins)
