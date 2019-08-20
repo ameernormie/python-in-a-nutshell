@@ -579,3 +579,20 @@ whentrue if condition else whenfalse
 ```
 
 #### Numeric Operations
+
+##### Numeric Conversions
+
+You can perform arithmetic operations and comparisons between any two numbers of Python built-in types. **If the operands’ types differ, coercion applies: Python converts the operand with the “smaller” type to the “larger” type.**
+**The types, in order from smallest to largest,**
+
+- Integers
+- Floating-point numbers
+- Complex numbers
+
+`You can request an explicit conversion by passing a noncomplex numeric argument to any of the built-in number types: int, float, and complex.` int drops its argument’s fractional part, if any (e.g., int(9.8) is 9). You can also call complex with two numeric arguments, giving real and imaginary parts. You cannot convert a complex to another numeric type in this way, because there is no single unambigu‐ ous way to convert a complex number into, for example, a float.
+
+##### Arithmetic Operations
+
+###### Division
+
+If the right operand of /, //, or % is 0, Python raises a runtime exception. The `//` operator performs truncating division, which means it returns an integer result (converted to the same type as the wider operand) and ignores the remainder, if any.
