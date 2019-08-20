@@ -37,6 +37,9 @@
       - [2.3.2.2 Augmented Assignment](#augmented-assignment)
       - [2.3.2.3 Del Statements](#del-statements)
     - [2.3.3 Expressions and Operators](#expressions-and-operators)
+      - [2.3.3.1 Comparison Chaining](#comparison-chaining)
+      - [2.3.3.2 Short Circuiting Operators](#short-circuiting-operators)
+    - [2.3.4 Numeric Operations](#numeric-operations)
 
 ## Python Interpreter
 
@@ -274,8 +277,6 @@ Second line
 ```
 
 The only character that cannot be part of a triple-quoted string is an unescaped backslash, while a quoted string cannot contain unescaped backslashes, nor line ends, nor the quote character that encloses it. The backslash character starts an escape sequence, which lets you introduce any character in either kind of string.
-
-Colons can be used to align columns.
 
 | Sequence   |                   Meaning                   |  ASCII/ISO code |
 | ---------- | :-----------------------------------------: | --------------: |
@@ -526,3 +527,55 @@ A del statement consists of the keyword del, followed by one or more target refe
 `Containers are also allowed to have del cause side effects. For example, assuming del C[2] succeeds, when C is a dict, this makes future references to C[2] invalid (raising KeyError) until and unless you assign to C[2] again; but when C is a list, del C[2] implies that every following item of C “shifts left by one”—so, if C is long enough, future references to C[2] are still valid, but denote a distinct item than they did before the del.`
 
 #### Expressions and Operators
+
+Operator precedence in expressions
+
+| Operator             |                   Description                   | Associativity |
+| -------------------- | :---------------------------------------------: | ------------: |
+| { key : expr ,...}   |               Dictionary creation               |           N/A |
+| { expr ,...}         |                  Set creation                   |           N/A |
+| [ expr ,...]         |                  List creation                  |           N/A |
+| ( expr ,...)         |       Tuple creation or just parentheses        |           N/A |
+| f ( expr ,...)       |                  Function call                  |             L |
+| x[index:index]       |                     Slicing                     |             L |
+| x[index]             |                    Indexing                     |             L |
+| x.attr               |               Attribute reference               |             L |
+| x\*\*y               |        Exponentiation (xto theyth power)        |             R |
+| ~x                   |                   Bitwise NOT                   |           N/A |
+| +x, -x               |              Unary plus and minus               |           N/A |
+| x\*y, x/y, x//y, x%y | multiply, divide, truncating division,remainder |             L |
+| x+y, x-y             |              Addition, subtraction              |             L |
+| x<<y, x>>y           |             Left-shift, right-shift             |             L |
+| x&y                  |                   Bitwise AND                   |             L |
+| x^y                  |                   Bitwise XOR                   |             L |
+| x(pipe)y             |                   Bitwise OR                    |             L |
+| x<y,x<=y,x>y         |                   Comparisons                   |           N/A |
+| xisy,xis noty        |                 Identity tests                  |           N/A |
+| xiny,xnot iny        |                Membership tests                 |           N/A |
+| not x                |                   Boolean NOT                   |           N/A |
+| xandy                |                   Boolean AND                   |             L |
+| xory                 |                   Boolean OR                    |             L |
+| x if expr else y     |                Ternary operator                 |           N/A |
+| lambda arg,...: expr |            Anonymous simple function            |           N/A |
+
+##### Comparison Chaining
+
+You can chain comparisons, implying a logical and.
+For example:
+`a < b <= c < d`
+has the same meaning as:
+`a < b and b <= c and c < d`
+
+##### Short-Circuiting Operators
+
+The and and or operators short-circuit their operands’ evaluation: the righthand operand evaluates only when its value is necessary to get the truth value of the entire and or or operation.
+
+###### The ternary operator
+
+Another short-circuiting operator is the ternary operator if/else:
+
+```
+whentrue if condition else whenfalse
+```
+
+#### Numeric Operations
