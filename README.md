@@ -36,10 +36,17 @@
       - [2.3.2.1 Plain Assignment](#plain-assignment)
       - [2.3.2.2 Augmented Assignment](#augmented-assignment)
       - [2.3.2.3 Del Statements](#del-statements)
-    - [2.3.3 Expressions and Operators](#expressions-and-operators)
-      - [2.3.3.1 Comparison Chaining](#comparison-chaining)
-      - [2.3.3.2 Short Circuiting Operators](#short-circuiting-operators)
-    - [2.3.4 Numeric Operations](#numeric-operations)
+  - [2.4 Expressions and Operators](#expressions-and-operators)
+    - [2.4.1 Comparison Chaining](#comparison-chaining)
+    - [2.4.2 Short Circuiting Operators](#short-circuiting-operators)
+  - [2.5 Numeric Operations](#numeric-operations)
+    - [2.5.1 Division](#division)
+    - [2.5.2 Exponentiation](#exponentiation)
+    - [2.5.2 Comparisons](#comparisons)
+  - [2.6 Sequence Operations](#sequence-operations)
+    - [2.6.1 Division](#division)
+    - [2.6.2 Exponentiation](#exponentiation)
+    - [2.6.2 Comparisons](#comparisons)
 
 ## Python Interpreter
 
@@ -526,7 +533,7 @@ A del statement consists of the keyword del, followed by one or more target refe
 
 `Containers are also allowed to have del cause side effects. For example, assuming del C[2] succeeds, when C is a dict, this makes future references to C[2] invalid (raising KeyError) until and unless you assign to C[2] again; but when C is a list, del C[2] implies that every following item of C “shifts left by one”—so, if C is long enough, future references to C[2] are still valid, but denote a distinct item than they did before the del.`
 
-#### Expressions and Operators
+### Expressions and Operators
 
 Operator precedence in expressions
 
@@ -558,7 +565,7 @@ Operator precedence in expressions
 | x if expr else y     |                Ternary operator                 |           N/A |
 | lambda arg,...: expr |            Anonymous simple function            |           N/A |
 
-##### Comparison Chaining
+#### Comparison Chaining
 
 You can chain comparisons, implying a logical and.
 For example:
@@ -566,11 +573,11 @@ For example:
 has the same meaning as:
 `a < b and b <= c and c < d`
 
-##### Short-Circuiting Operators
+#### Short-Circuiting Operators
 
 The and and or operators short-circuit their operands’ evaluation: the righthand operand evaluates only when its value is necessary to get the truth value of the entire and or or operation.
 
-###### The ternary operator
+##### The ternary operator
 
 Another short-circuiting operator is the ternary operator if/else:
 
@@ -578,9 +585,9 @@ Another short-circuiting operator is the ternary operator if/else:
 whentrue if condition else whenfalse
 ```
 
-#### Numeric Operations
+### Numeric Operations
 
-##### Numeric Conversions
+#### Numeric Conversions
 
 You can perform arithmetic operations and comparisons between any two numbers of Python built-in types. **If the operands’ types differ, coercion applies: Python converts the operand with the “smaller” type to the “larger” type.**
 **The types, in order from smallest to largest,**
@@ -591,8 +598,20 @@ You can perform arithmetic operations and comparisons between any two numbers of
 
 `You can request an explicit conversion by passing a noncomplex numeric argument to any of the built-in number types: int, float, and complex.` int drops its argument’s fractional part, if any (e.g., int(9.8) is 9). You can also call complex with two numeric arguments, giving real and imaginary parts. You cannot convert a complex to another numeric type in this way, because there is no single unambigu‐ ous way to convert a complex number into, for example, a float.
 
-##### Arithmetic Operations
+#### Arithmetic Operations
 
-###### Division
+##### Division
 
 If the right operand of /, //, or % is 0, Python raises a runtime exception. The `//` operator performs truncating division, which means it returns an integer result (converted to the same type as the wider operand) and ignores the remainder, if any.
+
+##### Exponentiation
+
+The exponentiation (“raise to power”) operation, a\*\*b, in v2, raises an exception when a is less than zero and b is a floating-point value with a nonzero fractional part, but, in v3, it returns the appropriate complex number in such cases.
+
+The built-in pow(a, b) function returns the same result as a\*\*b. With three arguments, pow(a, b, c) returns the same result as (a\*\*b)%c but is faster.
+
+##### Comparisons
+
+All objects, including numbers, can be compared for equality (==) and inequality (!=). Comparisons requiring order (<, <=, >, >=) may be used between any two numbers.
+
+### Sequence Operations
