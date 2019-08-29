@@ -582,6 +582,7 @@ The and and or operators short-circuit their operands’ evaluation: the rightha
 Another short-circuiting operator is the ternary operator if/else:
 
 ```
+
 whentrue if condition else whenfalse
 ```
 
