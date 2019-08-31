@@ -44,9 +44,10 @@
     - [2.5.2 Exponentiation](#exponentiation)
     - [2.5.2 Comparisons](#comparisons)
   - [2.6 Sequence Operations](#sequence-operations)
-    - [2.6.1 Division](#division)
-    - [2.6.2 Exponentiation](#exponentiation)
-    - [2.6.2 Comparisons](#comparisons)
+    - [2.6.1 Slicing a Sequence](#slicing-a-sequence)
+    - [2.6.2 Strings](#strings-operations)
+    - [2.6.3 Tuples](#tuples-operations)
+    - [2.6.4 Lists](#lists-operations)
 
 ## Python Interpreter
 
@@ -615,3 +616,53 @@ The built-in pow(a, b) function returns the same result as a\*\*b. With three ar
 All objects, including numbers, can be compared for equality (==) and inequality (!=). Comparisons requiring order (<, <=, >, >=) may be used between any two numbers.
 
 ### Sequence Operations
+
+#### Membership Testing
+
+S ====> Sequence
+
+```python
+x in S  # Checks if x is in sequence (True or False)
+x not in S
+not (x in S)
+```
+
+#### Slicing a Sequence
+
+To indicate a subsequence of S, you can use a slicing, with the syntax `S[i:j]`, where `i` and `j` are integers. **`S[i:j]` is the subsequence of S from the `ith` item, included, to the `jth` item, excluded.**
+
+**You can even omit both indices, to mean a shallow copy of the entire sequence: `S[:]`.**
+
+Slicing can use the extended syntax `S[i:j:k]`. `k` is the stride of the slice, meaning the distance between successive indices.
+
+**`S[::-1]` has the same items as S, but in reverse order.**
+
+```python
+y = list(range(10))
+y[-5:]              #  last five items
+[5,6,7,8,9]
+
+y[::2]              #  every other item
+[0,2,4,6,8]
+
+y[10:0:-2]          #  every other item, in reverse order
+[9,7,5,3,1]
+
+y[:0:-2]            #  every other item, in reverse order (simpler)
+[9,7,5,3,1]
+
+y[::-2]             #  every other item, in reverse order (best)
+[9,7,5,3,1]
+```
+
+### Strings Operations
+
+String objects (byte strings, as well as text, AKA Unicode, ones) are immutable: attempting to rebind or delete an item or slice of a string raises an exception.
+
+### Tuples Operations
+
+Tuple objects are immutable: therefore, attempting to rebind or delete an item or slice of a tuple raises an exception.
+
+### Lists Operations
+
+List objects are mutable: you may rebind or delete items and slices of a list. Items of a list are arbitrary objects and may be of different types.
