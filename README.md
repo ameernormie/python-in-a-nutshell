@@ -666,3 +666,64 @@ Tuple objects are immutable: therefore, attempting to rebind or delete an item o
 ### Lists Operations
 
 List objects are mutable: you may rebind or delete items and slices of a list. Items of a list are arbitrary objects and may be of different types.
+
+#### Modifying a list
+
+You can modify a single item in a list by assigning to an indexing. For instance:
+
+```python
+x=[1,2,3,4]
+x[1] = 42         # x is now [1, 42, 3, 4]
+```
+
+Another way to modify a list object L is to use a slice of L as the target (LHS) of an assignment statement. The RHS of the assignment must be an iterable.
+assigning to such a slice of a list can make the list longer or shorter. For example:
+
+```python
+x=[1,2,3,4]
+x[1:3] = [22, 33, 44]             # x is now [1, 22, 33, 44, 4]
+ x[1:4] = [8, 9]                  # x is now [1, 8, 9, 4]
+```
+
+Here are some important special cases of assignment to slices:
+
+- Using the empty list `[]` as the RHS expression removes the target slice from L. In other words, **L[i:j]=[] has the same effect as del `L[i:j]`** (or the peculiar statement `L[i:j]*=0`).
+- Using an empty slice of L as the LHS target inserts the items of the RHS at the appropriate spot in L. **For example, `L[i:i]=['a','b']` inserts `'a'` and `'b'` before the item that was at index i in L prior to the assignment.**
+- Using a slice that covers the entire list object, `L[:]`, as the LHS target, totally replaces the contents of L.
+
+You can delete an item or a slice from a list with del. For instance
+
+```python
+x=[1,2,3,4,5]
+del x[1]            # x is now [1, 3, 4, 5]
+del x[::2]          # x is now [3, 5]
+```
+
+#### In place Operations on list
+
+List objects define in-place versions of the + and \_ operators, which you can use via augmented assignment statements. The augmented assignment statement **`L+=L1` has the effect of adding the items of iterable L1 to the end of L**, just like L.extend(L1). **`L\*=n` has the effect of adding n-1 copies of L to the end of L; if n<=0, `L\*=n` empties the contents of L, like `L[:]=[]`**.
+
+#### List Methods
+
+List objects provide several methods
+| Method | Description |
+| -------------------- | :---------------------------------------------: |
+| L .count( x ) | Returns the number of items of L that are equal to x.|
+| L .index( x ) | Returns the index of the first occurrence of an item in `L` that is equal to `x`, or raises an exception if `L` has no such item. |
+| **Mutating** | **Mutating** |
+| L .append( x ) | Appends item x to the end of L ; like `L[len(L):]=[x]`. |
+| L .extend( s ) | Appends all the items of iterables to the end of L ; like `L[len(L):]=s` or `L += s`. |
+| L.insert(i, x) | Inserts item `x` in `L` before the item at index `i`, moving following items of L(if any) “rightward” to make space (increases len(L) by one, does not replace any item, does not raise exceptions; acts just like `L[i:i]=[x]`). |
+| L .remove( x ) | Removes from `L` the first occurrence of an item in `L` that is equal to `x`,or raises an exception if `L` has no such item. |
+| L.pop(i=-1) | Returns the value of the item at index `i` and removes it from `L`; when you omit `i`, removes and returns the last item; raises an exception if `L` is empty or `i` is an invalid index in `L`. |
+| L .reverse()| Reverses, in place, the items of `L`.|
+| L.sort(cmp=cmp, key=None, reverse=False) | Sorts, in-place, the items of L, comparing items pairwise via—v2, only the function passed as cmp(by default, the built-in function cmp). When argument key is not None, what gets compared for each item x is key(x), not x itself. Argumentcmpis deprecated in v2 (we recommend never using it) and does not exist at all in v3. |
+
+#### Sorting a list
+
+```python
+mylist = ['alpha', 'Beta', 'GAMMA']
+mylist.sort()                 # ['Beta', 'GAMMA', 'alpha']
+mylist.sort(key=str.lower)    # ['alpha', 'Beta', 'GAMMA']
+
+```
