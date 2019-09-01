@@ -758,3 +758,42 @@ Python provides a variety of operations applicable to sets (both plain and froze
 | S.discard(x)               |                       Removes x as an item of S; no effect when x was not an item of S                        |
 | S.pop()                    |                                  Removes and returns an arbitrary item of S                                   |
 | S.remove(x)                |                  Removesxas an item ofS; raises aKeyErrorexception whenx was not an item ofS                  |
+
+### Dictionary Operations
+
+Python provides a variety of operations applicable to dictionaries. Since dictionaries are containers, the built-in len function can take a dictionary as its argument and return the number of items (key/value pairs) in the dictionary. A dictionary is itera‐ ble, so you can pass it to any function that takes an iterable argument.
+
+#### Indexing a Dictionary
+
+To denote the value in a dictionary D currently associated with key k, use an indexing: `D[k]`.
+
+```python
+d = {'x':42, 'y':3.14, 'z':7}
+d['x']            # 42
+d['z']            # 7
+d['a']            # raises KeyError exception
+```
+
+#### Dictionary Methods
+
+| Method              |                                                         Description                                                         |
+| ------------------- | :-------------------------------------------------------------------------------------------------------------------------: |
+| **Non Mutating**    |                                                      **Non Mutating**                                                       |
+| D.copy()            | Returns a shallow copy of the dictionary (a copy whose items are the same objects as D’s, not copies thereof), like dict(D) |
+| D.get(k[, x])       |                    Returns D[k] whenk is a key in D; otherwise, returns x(or None, when x is not given)                     |
+| D .items()          |                                     returns an iterable dict_items instance, not a list                                     |
+| D .iteritems()      |                              Returns an iterator on all items (key/value pairs) in D(v2 only)                               |
+| D .iterkeys()       |                                        Returns an iterator on all keys in D(v2 only)                                        |
+| D .itervalues()     |                                       Returns an iterator on all values inD(v2 only)                                        |
+| D.keys()            |                                     returns an iterable dict_keys instance, not a list                                      |
+| D .values()         |                                     returns an iterable dict_valuesinstance, not a list                                     |
+| **Mutating**        |                                                        **Mutating**                                                         |
+| D .clear()          |                                          Removes all items from D, leaving D empty                                          |
+| D.pop(k[, x])       |                                       Removes and returns D[k] when k is a key in D;                                        |
+| D .popitem()        |                                   Removes and returns an arbitrary item (key/value pair)                                    |
+| D.setdefault(k[,x]) |       Returns D[k] when k is a key in D; otherwise, sets D[k] equal to x(or None, when x is not given) and returns x        |
+| D .update( D1 )     |                                     For each k in mapping D1, sets D[k] equal to D1[k]                                      |
+
+you can explicitly make lists, such as list(D.keys())).
+
+### Control Flow Statements
