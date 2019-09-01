@@ -48,6 +48,14 @@
     - [2.6.2 Strings](#strings-operations)
     - [2.6.3 Tuples](#tuples-operations)
     - [2.6.4 Lists](#lists-operations)
+      - [2.6.4.1 Modifying a list](#modifying-a-list)
+      - [2.6.4.2 In-place operations on list](#in-place-operations-on-list)
+      - [2.6.4.3 List Methods](#list-methods)
+      - [2.6.4.4 Sorting a List](#sorting-a-list)
+  - [2.7 Set Operations](#set-operations)
+    - [2.7.1 Set Methods](#set-methods)
+  - [2.7 Dictionary Operations](#dictionary-operations)
+    - [2.7.1 Set Methods](#set-methods)
 
 ## Python Interpreter
 
@@ -727,3 +735,26 @@ mylist.sort()                 # ['Beta', 'GAMMA', 'alpha']
 mylist.sort(key=str.lower)    # ['alpha', 'Beta', 'GAMMA']
 
 ```
+
+### Set Operations
+
+Python provides a variety of operations applicable to sets (both plain and frozen). Since sets are containers, the built-in len function can take a set as its single argument and return the number of items in the set. A set is iterable, so you can pass it to any function or method that takes an iterable argument.
+
+#### Set Methods
+
+| Method                     |                                                  Description                                                  |
+| -------------------------- | :-----------------------------------------------------------------------------------------------------------: |
+| **Non Mutating**           |                                               **Non Mutating**                                                |
+| S.copy()                   | Returns a shallow copy of `S`(a copy whose items are the same objects as S’s, not copies thereof), likeset(S) |
+| S.difference(S1)           |                               Returns the set of all items ofSthat aren’t in S1                               |
+| S.intersection(S1)         |                              Returns the set of all items ofSthat are also in S1                              |
+| S.issubset(S1)             |                   Returns True when all items of S are also in S1; otherwise, returns False                   |
+| S.issuperset(S1)           |        Returns True when all items of S1 are also in S; otherwise, returns False (like S1.issubset(S))        |
+| S.symmetric_difference(S1) |                      Returns the set of all items that are in eitherSorS1, but not both                       |
+| S.union(S1)                |                             Returns the set of all items that are inS,S1, or both                             |
+| **Mutating**               |                                                 **Mutating**                                                  |
+| S.add(x)                   |                        Adds x as an item to S; no effect if x was already an item in S                        |
+| S.clear()                  |                                   Removes all items from S, leaving S empty                                   |
+| S.discard(x)               |                       Removes x as an item of S; no effect when x was not an item of S                        |
+| S.pop()                    |                                  Removes and returns an arbitrary item of S                                   |
+| S.remove(x)                |                  Removesxas an item ofS; raises aKeyErrorexception whenx was not an item ofS                  |
