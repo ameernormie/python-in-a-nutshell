@@ -54,8 +54,10 @@
       - [2.6.4.4 Sorting a List](#sorting-a-list)
   - [2.7 Set Operations](#set-operations)
     - [2.7.1 Set Methods](#set-methods)
-  - [2.7 Dictionary Operations](#dictionary-operations)
-    - [2.7.1 Set Methods](#set-methods)
+  - [2.8 Dictionary Operations](#dictionary-operations)
+    - [2.8.1 Dictionary Methods](#dictionary-methods)
+  - [2.9 Control Flow Statements](#control-flow-statements)
+    - [2.9.1 The If Statement](#the-if-statements)
 
 ## Python Interpreter
 
@@ -797,3 +799,71 @@ d['a']            # raises KeyError exception
 you can explicitly make lists, such as list(D.keys())).
 
 ### Control Flow Statements
+
+A program’s control flow is the order in which the program’s code executes. The con‐ trol flow of a Python program depends on conditional statements, loops, and func‐ tion calls.
+
+#### The If Statement
+
+The compound statement if —comprising if, elif, and else clauses lets you conditionally execute blocks of statements. The syntax for the if statement is:
+
+```python
+if expression:
+  statement(s)
+elif expression:
+  statement(s)
+elif expression:
+  statement(s)
+...
+else:
+  statement(s)
+```
+
+To test a value x in a Boolean context, use the following coding style:
+`if x:`
+
+#### The while Statement
+
+The while statement repeats execution of a statement or block of statements, controlled by a conditional expression. Here’s the syntax of the while statement:
+
+```python
+while expression:
+    statement(s)
+```
+
+A while statement can also include an else clause:
+Here’s a typical while statement:
+
+```python
+count = 0
+while x > 0:
+    x //= 2         # truncating division
+    count += 1
+print('The approximate log2 is', count)
+```
+
+A loop within a function’s body also ends if the loop body executes a return statement, since in this case the whole function ends.
+
+#### The for Statement
+
+The for statement repeats execution of a statement, or block of statements, controlled by an iterable expression. Here’s the syntax of the for statement:
+
+```python
+for target in iterable:
+    statement(s)
+```
+
+Here’s a typical for statement:
+
+```python
+for letter in 'ciao':
+     print('give me a', letter, '...')
+```
+
+A for statement can also include an else clause.
+You can also have a target with multiple identifiers, like in an unpacking assignment. In this case, the iterator’s items must be iterables, each with exactly as many items as there are identifiers in the target.
+
+```python
+for key, value in d.items():
+    if key and value: # print only true keys and values
+        print(key, value)
+```
