@@ -58,6 +58,8 @@
     - [2.8.1 Dictionary Methods](#dictionary-methods)
   - [2.9 Control Flow Statements](#control-flow-statements)
     - [2.9.1 The If Statement](#the-if-statements)
+    - [2.9.2 The while Statement](#the-while-statement)
+    - [2.9.3 The for Statement](#the-for-statement)
 
 ## Python Interpreter
 
@@ -867,3 +869,11 @@ for key, value in d.items():
     if key and value: # print only true keys and values
         print(key, value)
 ```
+
+##### Caution
+
+**When an iterable has a mutable underlying object, don’t alter that object during a for loop on it.**
+
+- When looping on a list, do not insert, append, or delete items (rebinding an item at an existing index is OK).
+- When looping on a dictionary, do not add or delete items (rebinding the value for an existing key is OK).
+- When looping on a set, do not add or delete items (no alteration permitted).
